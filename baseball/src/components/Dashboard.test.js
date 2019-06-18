@@ -38,4 +38,32 @@ describe("<Dashboard />", () => {
             expect(queryByText(/Count: 1-0/i)).toBeTruthy();
         })
     })
+    describe('Foul button', () => {
+        it('increments state.strikes', () => {
+            const { getByText, queryByText } = render(<Dashboard />);
+            const button = getByText(/foul/i);
+            fireEvent.click(button);
+            expect(queryByText(/Count: 0-1/i)).toBeTruthy();
+        })
+        it("it doesn't surpass 2 strikes", () => {
+            const { getByText, queryByText } = render(<Dashboard />);
+            const button = getByText(/foul/i);
+            fireEvent.click(button);
+            fireEvent.click(button);
+            fireEvent.click(button);
+            fireEvent.click(button);
+            expect(queryByText(/Count: 0-2/i)).toBeTruthy();
+        })
+    })
+    describe('Hit button', () => {
+        it('resets the count', () => {
+            const { getByText, queryByText } = render(<Dashboard />);
+            const hit = getByText(/hit/i);
+            const strike = getByText(/strike/i);
+            fireEvent.click(strike); //count 0-1
+            fireEvent.click(strike); //count 0-2
+            fireEvent.click(hit); // count reset
+            expect(queryByText(/Count: 0-0/i)).toBeTruthy();
+        })
+    })
   });

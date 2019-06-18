@@ -56,10 +56,11 @@ export default class Dashboard extends React.Component {
     ResetHandler = e => {
         this.setState({strikes: 0, balls: 0})
     }
-    
+
     render() {
         return(
             <div className="dashboard-wrapper">
+                <h3>Controller: </h3>
                 <div className="button-wrapper">
                     <button onClick={this.StrikeHandler}>Strike</button>
                     <button onClick={this.BallHandler}>Ball</button>

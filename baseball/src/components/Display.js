@@ -9,8 +9,7 @@ export default class Display extends React.Component {
     render() {
         return (
             <>
-            <h3>Strikes: {this.props.strikes}</h3>
-            <h3>Balls: {this.props.balls}</h3>
+            <h3>Count: {this.props.balls}-{this.props.strikes}</h3>
             </>
         )
     }
